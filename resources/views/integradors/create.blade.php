@@ -8,15 +8,15 @@
     {{-- CSRF é um token de segurança para validar o formulário --}}
     @csrf
     <label for="cpf_cnpj">CPF ou CNPJ:</label>
-    <input type="number" name="cpf_cnpj" id="cpf_cnpj" required>
-    <label for="nome_integrador">Nome Integrador:</label>
-    <input type="text" name="nome_integrador" id="nome_integrador" required>
+    <input type="number" placeholder="Insira seu CPF/CNPJ " name="cpf_cnpj" id="cpf_cnpj" required>
+    <label for="nome_integrador" >Nome Integrador:</label>
+    <input type="text" placeholder="Insira seu nome " name="nome_integrador" id="nome_integrador" required>
     <label for="nome_dono">Nome Dono:</label>
-    <input type="text" name="nome_dono" id="nome_dono" required>
+    <input type="text" placeholder="Insira seu nome " name="nome_dono" id="nome_dono" required>
     <label for="cidade">Cidade:</label>
-    <input type="text" name="cidade" id="cidade" required>
+    <input type="text" placeholder="Insira sua cidade" name="cidade" id="cidade" required>
     <label for="estado">Estado:</label>
-    <input type="text" name="estado" id="estado" required>
+    <input type="text" placeholder="Insira seu estado" name="estado" id="estado" required>
     <label for="marca_paineis">Marca de Paineis:</label>
     <select name="marca_paineis" id="marca_paineis" class="form-control">
     <option value="">SELECIONE</option>

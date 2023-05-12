@@ -10,14 +10,12 @@
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>CRUD Innova</h1>
-        </header>
         <nav>
             <ul>
                 {{-- Links para o cadastro --}}
-                <li><a href="/integradors">Início</a></li>
-                <li><a href="/integradors/create">Cadastro de Integradors</a></li>
+                <li><a href="/">Inicio</a></li>
+                <li><a href="/integradors">Lista de Integradores</a></li>
+                <li><a href="/integradors/create">Cadastro de Integradores</a></li>
             </ul>
         </nav>
         <div class="content">
@@ -25,7 +23,6 @@
             @yield('content')
         </div>
         <footer>
-          
         </footer>
     </div>
 </body>

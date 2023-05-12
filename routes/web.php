@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\IntegradorController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('base');
 });
 
 Route::resource('/integradors', IntegradorController::class);

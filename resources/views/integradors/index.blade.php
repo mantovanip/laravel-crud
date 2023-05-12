@@ -2,10 +2,10 @@
 @extends('base')
 {{-- cria a seção content, definida na base, para injetar o código --}}
 @section('content')
-<h2>Cadastrado de Integradores</h2>
+<h2>Integradores Cadastrado</h2>
 {{-- se a variável $integradors não existir, mostra um h3 com uma mensagem --}}
 @if (!isset($integradors))
-<h3 style="color: red">Nenhum Registro Encontrado!</h3>
+
 {{-- senão, monta a tabela com o dados --}}
 @else
 
