@@ -3,7 +3,8 @@
 namespace App\Mocks;
 
 class DadoMockado
-{
+{   
+    public $id;
     public $cpf_cnpj;
     public $nome_integrador;
     public $nome_dono;

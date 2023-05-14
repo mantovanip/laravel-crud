@@ -2,7 +2,7 @@
 @extends('base')
 {{-- cria a seção content, definida na base, para injetar o código --}}
 @section('content')
-<h2>Integradores Cadastrado</h2>
+<h2>Integradores Cadastrados</h2>
 {{-- se a variável $integradors não existir, mostra um h3 com uma mensagem --}}
 @if (!isset($integradors))
 
@@ -52,7 +52,7 @@
 <tfoot>
     <tr>
         {{-- mostra a qtde de integradores cadastrados. --}}
-        <td colspan="9">Integradores Cadastrados: {{ $integradors->count() }}</td>
+        <td colspan="9">Integradores Cadastrados: {{ count($integradors) }}</td>
     </tr>
 </tfoot>
 </table>

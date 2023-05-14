@@ -6,12 +6,12 @@
 }
 
 div.container {
-    width: 1200px;
+    width: 1300px;
     margin: 0 auto;
 }
 
 div.container>header {
-    background-color: rgb(66, 66, 66);
+    background-color: #1565c0;
     color: rgb(255, 255, 255);
     padding: 20px;
     text-align: center;
@@ -20,7 +20,7 @@ div.container>header {
 }
 
 div.container>nav {
-    background-color: rgb(100, 100, 100);
+    background-color: #1565c0;
     text-align: center;
     font-size: medium;
 }
@@ -43,7 +43,7 @@ div.container>nav a:visited {
 
 div.container>nav li:hover,
 div.container>nav a:hover {
-    background-color: rgb(66, 66, 66);
+    background-color: #1565c0;
     color: white;
 }
 
@@ -54,9 +54,8 @@ div.content {
 }
 
 div.content h2 {
-    border-bottom: medium rgb(66, 66, 66) solid;
-    font-family: Arial;
-    color: rgb(66, 66, 66);
+    text-align: center;
+    color: rgb(0, 0, 0);
     margin-bottom: 3rem;
 }
 
@@ -65,7 +64,7 @@ div.content p {
 }
 
 div.container>footer {
-    background-color: rgb(66, 66, 66);
+    background-color: #1565c0;
     padding: 2rem;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -84,7 +83,7 @@ table {
 }
 
 thead {
-    background-color: #222;
+    background-color: #0277bd;
     color: #fff;
     text-transform: uppercase;
 }
@@ -111,11 +110,6 @@ tbody tr:nth-child(even) {
     background-color: #fafafa;
 }
 
-tfoot {
-    background-color: #444;
-    color: #fff;
-    text-transform: uppercase;
-}
 
 tfoot td {
     padding: 12px 15px;
@@ -139,16 +133,18 @@ form select {
     padding: 0.4rem;
     border: 0.5px solid #181818;
     border-radius: 0.25rem;
+    width: 400px;
+
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 form input[type=submit],
-form input[type=reset],
-button {
+form input[type=reset] {
     display: inline-block;
     padding: 0.5rem 1rem;
     font-size: 1.2rem;
@@ -162,8 +158,7 @@ button {
 }
 
 form input[type=submit]:hover,
-form input[type=reset]:hover,
-button:hover {
+form input[type=reset]:hover {
     background-color: #0b4d92;
 }
 
@@ -180,37 +175,36 @@ form .error {
     color: #dc3545;
     font-size: 1.1rem;
 }
+
 .btn {
-    height: 25px;
-    color: #fff;
-    padding: 5px 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
     display: inline-block;
-    outline: none;
-    border-radius: 10px;
-    z-index: 0;
-    background: #fff;
-    overflow: hidden;
-    border: 1px solid #4433ff;
-    color: #4433ff;
-  }
-  .btn:hover {
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
     color: #fff;
-  }
-  .btn:hover:after {
-    height: 100%;
-  }
-  .btn:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    transition: all 0.3s ease;
-    left: 0;
-    bottom: 0;
-    height: 0;
-    width: 100%;
-    background: #4433ff;
-  }
+    background-color: #007bff;
+    border: none;
+    border-radius: 0.25rem;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+    background-color: #0b4d92;
+}
+
+.btn:after {
+    display: none;
+}
+
+p {
+    margin: 0;
+    /* Remove o espaçamento padrão entre o parágrafo e as bordas da caixa */
+    padding: 5px;
+    /* Adiciona um espaçamento interno para melhorar a legibilidade */
+    background-color: #f2f2f2;
+    /* Adiciona uma cor de fundo para separar os itens da lista */
+    border-radius: 5px;
+    /* Adiciona bordas arredondadas para os itens da lista */
+}

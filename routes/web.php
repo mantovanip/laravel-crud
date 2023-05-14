@@ -6,6 +6,7 @@ use App\Http\Controllers\IntegradorController;
 Route::get('/', function () {
     return view('base');
 });
+Route::get('/', [IntegradorController::class, 'dashboard']);
 
 Route::resource('/integradors', IntegradorController::class);
 
