@@ -13,24 +13,24 @@
         <nav>
             {{-- Links para o cadastro --}}
             <li><a href="/">Inicio</a></li>
-            <li><a href="/integradors">Lista de Integradores</a></li>
             <li><a href="/integradors/create">Cadastro de Integradores</a></li>
+            <li><a href="/integradors">Lista de Integradores</a></li>
             <li><a href="/">Dashboard</a></li>
 
             </ul>
         </nav>
 
-        <h1>Gráfico de pizza por estado</h1>
+    </div>
+    <div class="content">
+        <h2>Gráfico de pizza por estado</h2>
         <canvas id="grafico-pizza-estado"></canvas>
 
-        <h1>Gráfico de pizza por marca</h1>
+        <h2>Gráfico de pizza por marca</h2>
         <canvas id="grafico-pizza-marca"></canvas>
 
-        <h1>Gráfico de pizza por porte</h1>
+        <h2>Gráfico de pizza por porte</h2>
         <canvas id="grafico-pizza-porte"></canvas>
-
     </div>
-
 </body>
 <script>
     //  grafico estado 

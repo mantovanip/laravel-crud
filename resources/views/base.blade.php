@@ -16,13 +16,13 @@
         <nav>
             {{-- Links para o cadastro --}}
             <li><a href="/">Inicio</a></li>
-            <li><a href="/integradors">Lista de Integradores</a></li>
             <li><a href="/integradors/create">Cadastro de Integradores</a></li>
+            <li><a href="/integradors">Lista de Integradores</a></li>
             <li><a href="/">Dashboard</a></li>
 
             </ul>
         </nav>
-        <div class="content">
+        <div class="content" >
             {{-- o conteúdo da view específica será injetado aqui! --}}
             @yield('content')
         </div>

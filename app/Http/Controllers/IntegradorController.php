@@ -50,18 +50,17 @@ class IntegradorController extends Controller
         if ($id) {
             // Se sim, busca o registro correspondente no banco de dados
             $integrador = Integrador::findOrFail($id);
-    
+
             // Retorna a view create passando o registro encontrado
             return view('integradors.create', ['integrador' => $integrador]);
         } else {
             // Se não, gera dados fictícios usando o método gerarMockData()
             $integradors = $this->gerarMockData();
-    
+
             // Retorna a view create passando os dados fictícios
             return view('integradors.create', ['integradors' => $integradors]);
         }
     }
-    
 
     /**
      * Store a newly created resource in storage.
@@ -100,7 +99,7 @@ class IntegradorController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-      */
+     */
     // public function show($id)
     // {
     //     $integradors = null;
@@ -122,14 +121,14 @@ class IntegradorController extends Controller
     public function show($id)
     {
         $integradors = Integrador::find($id);
-    
+
         if ($integradors) {
             return view('integradors.show')->with('integradors', $integradors);
         } else {
             return view('integradors.show')->with('msg', 'Integrador não encontrado!');
         }
     }
-    
+
 
     /**
      * Show the form for editing the specified resource.
@@ -165,7 +164,7 @@ class IntegradorController extends Controller
     public function edit($id)
     {
         $integradors = Integrador::find($id);
-    
+
         if ($integradors) {
             return view('integradors.edit')->with('integradors', $integradors);
         } else {
@@ -211,7 +210,7 @@ class IntegradorController extends Controller
     {
         // Recupera o integrador mediante o id
         $integrador = Integrador::find($id);
-    
+
         // Atualiza os atributos do objeto recuperado com os dados do objeto Request
         $integrador->cpf_cnpj = $request->input('cpf_cnpj');
         $integrador->nome_integrador = $request->input('nome_integrador');
@@ -220,10 +219,10 @@ class IntegradorController extends Controller
         $integrador->estado = $request->input('estado');
         $integrador->marca_paineis = $request->input('marca_paineis');
         $integrador->porte = $request->input('porte');
-    
+
         // Persiste as alterações na base de dados
         $integrador->save();
-        
+
         return redirect()->back()->with('success', 'Integrador atualizado com sucesso!');
     }
 
@@ -246,82 +245,28 @@ class IntegradorController extends Controller
         return view('integradors.index')->with('integradors', $integradors)
             ->with('msg', 'Integrador excluído com sucesso!');
     }
+    
     public function gerarMockData()
     {
-        $dadosMockados = [];
-        $dadoMockado1 = new Integrador();
-        $dadoMockado1->id = 1;
-        $dadoMockado1->cpf_cnpj = '123.456.789-10';
-        $dadoMockado1->nome_integrador = 'Integrador A';
-        $dadoMockado1->nome_dono = 'Dono A';
-        $dadoMockado1->cidade = 'São Paulo';
-        $dadoMockado1->estado = 'SP';
-        $dadoMockado1->marca_paineis = 'Jinko Solar';
-        $dadoMockado1->porte = 'Pequeno';
-        array_push($dadosMockados, $dadoMockado1);
+        return [
+            ['id' => 1,            'cpf_cnpj' => '123.456.789-10',            'nome_integrador' => 'Integrador A',            'nome_dono' => 'Dono A',            'cidade' => 'São Paulo',         'estado' => 'SP',   'marca_paineis' => 'Jinko Solar',     'porte' => 'Pequeno'],
+            ['id' => 2,            'cpf_cnpj' => '987.654.321-00',            'nome_integrador' => 'Integrador B',            'nome_dono' => 'Dono B',            'cidade' => 'Rio de Janeiro',    'estado' => 'RJ',   'marca_paineis' => 'Trina Solar',     'porte' => 'Médio'],
+            ['id' => 3,            'cpf_cnpj' => '111.222.333-44',            'nome_integrador' => 'Integrador C',            'nome_dono' => 'Dono C',            'cidade' => 'Curitiba',          'estado' => 'PR',   'marca_paineis' => 'Canadian Solar',  'porte' => 'Grande'],
+            ['id' => 4,            'cpf_cnpj' => '555.666.777-88',            'nome_integrador' => 'Integrador D',            'nome_dono' => 'Dono D',            'cidade' => 'Belo Horizonte',    'estado' => 'MG',   'marca_paineis' => 'Ja Solar',        'porte' => 'Médio'],
+            ['id' => 5,            'cpf_cnpj' => '999.888.777-66',            'nome_integrador' => 'Integrador E',            'nome_dono' => 'Dono E',            'cidade' => 'Recife',            'estado' => 'PE',   'marca_paineis' => 'Hanwha Q-Cells',  'porte' => 'Pequeno'],
+            ['id' => 6,            'cpf_cnpj' => '444.333.222-11',            'nome_integrador' => 'Integrador F',            'nome_dono' => 'Dono F',            'cidade' => 'Campinas',          'estado' => 'SP',   'marca_paineis' => 'GCL-Si',          'porte' => 'Grande'],
+            ['id' => 7,            'cpf_cnpj' => '000.333.222-11',            'nome_integrador' => 'Integrador G',            'nome_dono' => 'Dono F',            'cidade' => 'Marilia',           'estado' => 'SP',   'marca_paineis' => 'GCL-Si',          'porte' => 'Grande'],
+            ['id' => 8,            'cpf_cnpj' => '777.888.999-00',            'nome_integrador' => 'Integrador H',            'nome_dono' => 'Dono H',            'cidade' => 'Porto Alegre',      'estado' => 'RS',   'marca_paineis' => 'JA Solar',        'porte' => 'Médio'],
+            ['id' => 9,            'cpf_cnpj' => '555.444.333-22',            'nome_integrador' => 'Integrador I',            'nome_dono' => 'Dono I',            'cidade' => 'Fortaleza',         'estado' => 'CE',   'marca_paineis' => 'Canadian Solar',  'porte' => 'Grande'],
+            ['id' => 10,           'cpf_cnpj' => '222.111.000-33',            'nome_integrador' => 'Integrador J',            'nome_dono' => 'Dono J',            'cidade' => 'Salvador',          'estado' => 'BA',   'marca_paineis' => 'Jinko Solar',     'porte' => 'Pequeno'],
+            ['id' => 11,           'cpf_cnpj' => '999.000.111-22',            'nome_integrador' => 'Integrador K',            'nome_dono' => 'Dono K',            'cidade' => 'Goiânia',           'estado' => 'GO',   'marca_paineis' => 'Hanwha Q-Cells',  'porte' => 'Pequeno'],
+            ['id' => 12,           'cpf_cnpj' => '444.333.222-11',            'nome_integrador' => 'Integrador L',            'nome_dono' => 'Dono L',            'cidade' => 'Florianópolis',     'estado' => 'SC',   'marca_paineis' => 'Trina Solar',     'porte' => 'Médio'],
+            ['id' => 13,           'cpf_cnpj' => '123.456.789-10',            'nome_integrador' => 'Integrador M',            'nome_dono' => 'Dono M',            'cidade' => 'Natal',             'estado' => 'RN',   'marca_paineis' => 'Jinko Solar',     'porte' => 'Pequeno'],
+            ['id' => 14,           'cpf_cnpj' => '000.111.222-33',            'nome_integrador' => 'Integrador N',            'nome_dono' => 'Dono N',            'cidade' => 'Vitória',           'estado' => 'ES',   'marca_paineis' => 'Canadian Solar',  'porte' => 'Grande'],
 
-
-        $dadoMockado2 = new Integrador();
-        $dadoMockado2->id = 2;
-        $dadoMockado2->cpf_cnpj = '987.654.321-00';
-        $dadoMockado2->nome_integrador = 'Integrador B';
-        $dadoMockado2->nome_dono = 'Dono B';
-        $dadoMockado2->cidade = 'Rio de Janeiro';
-        $dadoMockado2->estado = 'RJ';
-        $dadoMockado2->marca_paineis = 'Trina Solar';
-        $dadoMockado2->porte = 'Médio';
-        array_push($dadosMockados, $dadoMockado2);
-
-
-        $dadoMockado3 = new Integrador();
-        $dadoMockado3->id = 3;
-        $dadoMockado3->cpf_cnpj = '111.222.333-44';
-        $dadoMockado3->nome_integrador = 'Integrador C';
-        $dadoMockado3->nome_dono = 'Dono C';
-        $dadoMockado3->cidade = 'Curitiba';
-        $dadoMockado3->estado = 'PR';
-        $dadoMockado3->marca_paineis = 'Canadian Solar';
-        $dadoMockado3->porte = 'Grande';
-        array_push($dadosMockados, $dadoMockado3);
-
-
-        $dadoMockado4 = new Integrador();
-        $dadoMockado4->id = 4;
-        $dadoMockado4->cpf_cnpj = '555.666.777-88';
-        $dadoMockado4->nome_integrador = 'Integrador D';
-        $dadoMockado4->nome_dono = 'Dono D';
-        $dadoMockado4->cidade = 'Belo Horizonte';
-        $dadoMockado4->estado = 'MG';
-        $dadoMockado4->marca_paineis = 'Ja Solar';
-        $dadoMockado4->porte = 'Médio';
-        array_push($dadosMockados, $dadoMockado4);
-
-
-        $dadoMockado5 = new Integrador();
-        $dadoMockado5->id = 5;
-        $dadoMockado5->cpf_cnpj = '999.888.777-66';
-        $dadoMockado5->nome_integrador = 'Integrador E';
-        $dadoMockado5->nome_dono = 'Dono E';
-        $dadoMockado5->cidade = 'Recife';
-        $dadoMockado5->estado = 'PE';
-        $dadoMockado5->marca_paineis = 'Hanwha Q-Cells';
-        $dadoMockado5->porte = 'Pequeno';
-        array_push($dadosMockados, $dadoMockado5);
-
-
-        $dadoMockado6 = new Integrador();
-        $dadoMockado6->id = 6;
-        $dadoMockado6->cpf_cnpj = '444.333.222-11';
-        $dadoMockado6->nome_integrador = 'Integrador F';
-        $dadoMockado6->nome_dono = 'Dono F';
-        $dadoMockado6->cidade = 'Campinas';
-        $dadoMockado6->estado = 'SP';
-        $dadoMockado6->marca_paineis = 'GCL-Si';
-        $dadoMockado6->porte = 'Grande';
-        array_push($dadosMockados, $dadoMockado6);
-
-        return $dadosMockados;
+        ];
     }
+
 
 
     public function gerarDadosGrafico()

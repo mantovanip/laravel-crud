@@ -41,7 +41,6 @@
 
     <button class="btn" type="submit" value="Salvar">Salvar</button>
     <button class="btn" type="reset" value="Limpar">Limpar</button>
-    <a href="{{ url()->previous() }}" class="btn">Voltar</a>
 
 </form>
 @endsection
