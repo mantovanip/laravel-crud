@@ -1,7 +1,17 @@
 @extends('base')
 @section('content')
 <h2>Editar Integrador</h2>
+@if (session('success_msg'))
+<div class="alert alert-success">
+{{ session('success_msg') }}
+</div>
+@endif
 
+@if (session('error_msg'))
+<div class="alert alert-danger">
+{{ session('error_msg') }}
+</div>
+@endif
 <form class="container" id="update-form" method="POST" action="{{ route('integradors.update', $integradors->id) }}">
   @csrf
   @method('PUT')
@@ -42,9 +52,8 @@
   </div>
 
   <div class="form-group">
-    <button form="update-form" type="submit" class="btn">Atualizar</button>
-    <button form="delete-form" type="submit" class="btn" value="Excluir">Excluir</button>
-    <a href="{{ url()->previous() }}" class="btn">Voltar</a>
+    <button form="update-form" type="submit" class="btn-save">Atualizar</button>
+    <button form="delete-form" type="submit" class="btn-del" value="Excluir">Excluir</button>
   </div>
 </div>
 </form>

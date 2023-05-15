@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Integrador;
 use Illuminate\Http\Request;
-use App\Mocks\DadoMockado;
+use Respect\Validation\Validator as v;
+
 
 class IntegradorController extends Controller
 {
@@ -20,48 +21,18 @@ class IntegradorController extends Controller
         //..retorna a view index passando a variável $integradors
         return view('integradors.index')->with('integradors', $integradors);
     }
-    // public function index()
-    // {
-    //     // gera dados fictícios usando o método gerarMockData()
-    //     $integradors = $this->gerarMockData();
-
-    //     // retorna a view index passando a variável $integradors
-    //     return view('integradors.index', ['integradors' => $integradors]);
-    // }
-
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
 
-    // public function create()
-    // {
-    //     // gera dados fictícios usando o método gerarMockData()
-    //     $integradors = $this->gerarMockData();
-
-    //     // retorna a view create passando a variável $integradors
-    //     return view('integradors.create', ['integradors' => $integradors]);
-    // }
-
-    public function create($id = null)
+    public function create()
     {
-        // Verifica se o id do registro foi fornecido
-        if ($id) {
-            // Se sim, busca o registro correspondente no banco de dados
-            $integrador = Integrador::findOrFail($id);
 
-            // Retorna a view create passando o registro encontrado
-            return view('integradors.create', ['integrador' => $integrador]);
-        } else {
-            // Se não, gera dados fictícios usando o método gerarMockData()
-            $integradors = $this->gerarMockData();
-
-            // Retorna a view create passando os dados fictícios
-            return view('integradors.create', ['integradors' => $integradors]);
-        }
+        //..retorna a view create
+        return view('integradors.create');
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -70,29 +41,29 @@ class IntegradorController extends Controller
      */
     public function store(Request $request)
     {
-        // Valida os CPF/CNPJ de entrada
-        $this->validate($request, [
-            'cpf_cnpj' => 'required|cpf_cnpj',
-            'formato_cnpj' => 'required|formato_cnpj',
-            'formato_cpf' => 'required|formato_cpf',
-        ]);
-        $integradors = new Integrador();
-        $integradors->cpf_cnpj = $request->input('cpf_cnpj');
-        $integradors->nome_integrador = $request->input('nome_integrador');
-        $integradors->nome_dono = $request->input('nome_dono');
-        $integradors->cidade = $request->input('cidade');
-        $integradors->estado = $request->input('estado');
-        $integradors->marca_paineis = $request->input('marca_paineis');
-        $integradors->porte = $request->input('porte');
+        try {
+            //..instancia um novo model Integrador
+            $integradors = new Integrador();
+            //..pega os dados vindos do form e seta no model
+            $integradors->cpf_cnpj = $request->input('cpf_cnpj');
+            $integradors->nome_integrador = $request->input('nome_integrador');
+            $integradors->nome_dono = $request->input('nome_dono');
+            $integradors->cidade = $request->input('cidade');
+            $integradors->estado = $request->input('estado');
+            $integradors->marca_paineis = $request->input('marca_paineis');
+            $integradors->porte = $request->input('porte');
 
-        //..persiste o model na base de dados
-        $integradors->save();
+            //..persiste o model na base de dados
+            $integradors->save();
 
-        //..retorna a view com uma variável msg que será tratada na própria view
-        $integradors = Integrador::all();
-        return view('integradors.index')->with('integradors', $integradors)
-            ->with('msg', 'Integrador cadastrado com sucesso!');
+            // Redireciona para a página de listagem de integradores com uma mensagem de sucesso
+            return redirect()->route('integradors.create')->with('success_msg', 'Integrador cadastrado com sucesso!');
+        } catch (\Exception $e) {
+            // Redireciona de volta para a página de criação com uma mensagem de erro
+            return redirect()->route('integradors.create')->with('error_msg', 'Ocorreu um erro ao cadastrar o integrador.')->withErrors($e->getMessage());
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -100,31 +71,16 @@ class IntegradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    // {
-    //     $integradors = null;
-    //     $dadosMockados = $this->gerarMockData();
 
-    //     foreach ($dadosMockados as $dadoMockado) {
-    //         if ($dadoMockado->id == $id) {
-    //             $integradors = $dadoMockado;
-    //             break;
-    //         }
-    //     }
-
-    //     if ($integradors) {
-    //         return view('integradors.show')->with('integradors', $integradors);
-    //     } else {
-    //         return view('integradors.show')->with('msg', 'Integrador não encontrado!');
-    //     }
-    // }
     public function show($id)
     {
+        //..recupera o integrador da base de dados
         $integradors = Integrador::find($id);
-
+        //..se encontrar o integrador retorna a view com o objeto correspondente
         if ($integradors) {
             return view('integradors.show')->with('integradors', $integradors);
         } else {
+            //..senão, retorna a view com uma mensagem que será exibida.
             return view('integradors.show')->with('msg', 'Integrador não encontrado!');
         }
     }
@@ -136,39 +92,20 @@ class IntegradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function edit($id)
-    // {
-    //     //..recupera o integrador da base de dados
-    //     // $integradors = Integrador::find($id);
-    //     $integradors = null;
-    //     $dadosMockados = $this->gerarMockData();
 
-    //     foreach ($dadosMockados as $dadoMockado) {
-    //         if ($dadoMockado->id == $id) {
-    //             $integradors = $dadoMockado;
-    //             break;
-    //         }
-    //     }
-    //     //..se encontrar o integrador, retorna a view de edição com o objeto correspondente
-    //     if ($integradors) {
-    //         return view('integradors.edit')->with('integradors', $integradors);
-    //     } 
-    //     else {
-    //         //..senão, retorna a view de edição com uma mensagem que será exibida.
-    //         $dadoMockado = Integrador::all();
-    //         return view('integradors.index')->with('integradors', $dadoMockado)
-    //             ->with('msg', 'Integrador não encontrado!');
-    //     }
-    // }
 
     public function edit($id)
     {
+        //..recupera o integrador da base de dados
         $integradors = Integrador::find($id);
-
+        //..se encontrar o integrador, retorna a view de ediçãcom com o objeto correspondente
         if ($integradors) {
             return view('integradors.edit')->with('integradors', $integradors);
         } else {
-            return redirect()->back()->with('error', 'Integrador não encontrado.');
+            //..senão, retorna a view de edição com uma mensagem que será exibida.
+            $integradorss = Integrador::all();
+            return view('integradors.index')->with('integradors', $integradorss)
+                ->with('msg', 'Integrador não encontrado!');
         }
     }
 
@@ -180,51 +117,33 @@ class IntegradorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function update(Request $request, $id)
-    // {
-    //     // Recupera o integrador mediante o id
-    //     $integrador = Integrador::find($id);
 
-    //     // Atualiza os atributos do objeto recuperado com os dados do objeto Request
-    //     $integrador->cpf_cnpj = $request->input('cpf_cnpj');
-    //     $integrador->nome_integrador = $request->input('nome_integrador');
-    //     $integrador->nome_dono = $request->input('nome_dono');
-    //     $integrador->cidade = $request->input('cidade');
-    //     $integrador->estado = $request->input('estado');
-    //     $integrador->marca_paineis = $request->input('marca_paineis');
-    //     $integrador->porte = $request->input('porte');
-
-    //     // Persiste as alterações na base de dados
-    //     $integrador->save();
-    //     // Tenta atualizar o Integrador
-    //     $integradors = Integrador::find($id);
-    //     if ($integradors) {
-    //         $integradors->update($request->all());
-    //         return redirect()->back()->with('success', 'Integrador atualizado com sucesso!');
-    //     } else {
-    //         return redirect()->back()->with('error', 'Erro ao atualizar o Integrador.')->withInput();
-    //     }
-    // }
-
-    public function update(Request $request, $id)
-    {
-        // Recupera o integrador mediante o id
-        $integrador = Integrador::find($id);
-
-        // Atualiza os atributos do objeto recuperado com os dados do objeto Request
-        $integrador->cpf_cnpj = $request->input('cpf_cnpj');
-        $integrador->nome_integrador = $request->input('nome_integrador');
-        $integrador->nome_dono = $request->input('nome_dono');
-        $integrador->cidade = $request->input('cidade');
-        $integrador->estado = $request->input('estado');
-        $integrador->marca_paineis = $request->input('marca_paineis');
-        $integrador->porte = $request->input('porte');
-
-        // Persiste as alterações na base de dados
-        $integrador->save();
-
-        return redirect()->back()->with('success', 'Integrador atualizado com sucesso!');
-    }
+     public function update(Request $request, $id)
+     {
+         // Recupera o integrador mediante o id
+         try { 
+             $integrador = Integrador::find($id);
+             
+             // Atualiza os atributos do objeto recuperado com os dados do objeto Request
+             $integrador->cpf_cnpj = $request->input('cpf_cnpj');
+             $integrador->nome_integrador = $request->input('nome_integrador');
+             $integrador->nome_dono = $request->input('nome_dono');
+             $integrador->cidade = $request->input('cidade');
+             $integrador->estado = $request->input('estado');
+             $integrador->marca_paineis = $request->input('marca_paineis');
+             $integrador->porte = $request->input('porte');
+             
+             //..persiste o model na base de dados
+             $integrador->save();
+     
+             // Redireciona para a página de edição do integrador com uma mensagem de sucesso
+             return redirect()->back()->with('success_msg', 'Integrador atualizado com sucesso!');
+         } catch (\Exception $e) {
+             // Redireciona de volta para a página de edição com uma mensagem de erro
+             return redirect()->back()->with('error_msg', 'Ocorreu um erro ao atualizar o integrador.')->withErrors($e->getMessage());
+         }
+     }
+     
 
     /**
      * Remove the specified resource from storage.
@@ -245,7 +164,7 @@ class IntegradorController extends Controller
         return view('integradors.index')->with('integradors', $integradors)
             ->with('msg', 'Integrador excluído com sucesso!');
     }
-    
+
     public function gerarMockData()
     {
         return [
@@ -307,6 +226,7 @@ class IntegradorController extends Controller
 
         return $dados;
     }
+
     public function dashboard()
     {
         $dados = $this->gerarDadosGrafico();

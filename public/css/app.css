@@ -4,7 +4,16 @@
     font-family: Arial, Helvetica, sans-serif;
 
 }
-
+.alert-danger {
+    background-color: red;
+    color: white;
+    padding: 10px;
+}
+.alert-success {
+    background-color: green;
+    color: white;
+    padding: 10px;
+}
 div.container {
     width: 1300px;
     margin: 0 auto;
@@ -176,35 +185,159 @@ form .error {
     font-size: 1.1rem;
 }
 
-.btn {
-    display: inline-block;
-    padding: 0.5rem;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 0.25rem;
-    cursor: pointer;
-    text-decoration: none;
-    transition: background-color 0.2s ease-in-out;
-}
-
-.btn:hover {
-    background-color: #0b4d92;
-}
-
-.btn:after {
-    display: none;
-}
 
 p {
     margin: 0;
-    /* Remove o espaçamento padrão entre o parágrafo e as bordas da caixa */
     padding: 5px;
-    /* Adiciona um espaçamento interno para melhorar a legibilidade */
     background-color: #f2f2f2;
-    /* Adiciona uma cor de fundo para separar os itens da lista */
     border-radius: 5px;
-    /* Adiciona bordas arredondadas para os itens da lista */
 }
+
+
+.btn-edit {
+    min-width: 30px;
+    height: 15px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #4433ff;
+    color: #4433ff;
+    text-decoration: none;
+  }
+  .btn-edit:hover {
+    color: #fff;
+  }
+  .btn-edit:hover:after {
+    height: 100%;
+  }
+  .btn-edit:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background: #4433ff;
+  }
+
+  .btn-list {
+    min-width: 30px;
+    height: 15px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid yellow;
+    color: yellow;
+    text-decoration: none;
+  }
+  .btn-list:hover {
+    color: #fff;
+  }
+  .btn-list:hover:after {
+    height: 100%;
+  }
+  .btn-list:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background: yellow;
+  }
+
+  .btn-save {
+    min-width: 60px;
+    height: 30px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid green;
+    color: green;
+    text-decoration: none;
+  }
+  .btn-save:hover {
+    color: #fff;
+  }
+  .btn-save:hover:after {
+    height: 100%;
+  }
+  .btn-save:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background: green;
+  }
+
+  .btn-del {
+    min-width: 60px;
+    height: 30px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    z-index: 0;
+    background: #fff;
+    overflow: hidden;
+    border: 2px solid #d90429;
+    color: #d90429;
+    text-decoration: none;
+  }
+  .btn-del:hover {
+    color: #fff;
+  }
+  .btn-del:hover:after {
+    height: 100%;
+  }
+  .btn-del:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    transition: all 0.3s ease;
+    left: 0;
+    bottom: 0;
+    height: 0;
+    width: 100%;
+    background: #d90429;
+  }

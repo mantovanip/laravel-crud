@@ -1,18 +1,23 @@
-<html>
+<!DOCTYPE html>
+<html lang="pt-br">
 
 <head>
-    <title>Dashboard</title>
-    <script src="{{ asset('js/app.js') }}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        {{-- Pegando as variáveis de ambiente --}}
+        <title>{{ env('APP_NAME') }}</title>
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
 
 <body>
     <div class="container">
         <nav>
             {{-- Links para o cadastro --}}
-            <li><a href="/">Inicio</a></li>
             <li><a href="/integradors/create">Cadastro de Integradores</a></li>
             <li><a href="/integradors">Lista de Integradores</a></li>
             <li><a href="/">Dashboard</a></li>
@@ -22,13 +27,13 @@
 
     </div>
     <div class="content">
-        <h2>Gráfico de pizza por estado</h2>
+        <h2>Gráfico de estado</h2>
         <canvas id="grafico-pizza-estado"></canvas>
 
-        <h2>Gráfico de pizza por marca</h2>
+        <h2>Gráfico de marca</h2>
         <canvas id="grafico-pizza-marca"></canvas>
 
-        <h2>Gráfico de pizza por porte</h2>
+        <h2>Gráfico de porte</h2>
         <canvas id="grafico-pizza-porte"></canvas>
     </div>
 </body>

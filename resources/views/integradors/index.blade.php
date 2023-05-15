@@ -38,8 +38,8 @@
                 <td>{{ $v->porte }}</td>
                 {{-- vai para a rota show, passando o id como parâmetro --}}
                 <td>
-                    <a href="{{ route('integradors.edit', $v->id) }}" class="btn">Editar</a>
-                    <a href="{{ route('integradors.show', $v->id) }}" class="btn">Exibir</a>
+                    <a href="{{ route('integradors.edit', $v->id) }}" class="btn-edit">Editar</a>
+                    <a href="{{ route('integradors.show', $v->id) }}" class="btn-list">Exibir</a>
                 </td>
 
             </tr>

@@ -4,7 +4,17 @@
 @section('content')
 <h2>Cadastrar Novo Integrador</h2>
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+@if (session('success_msg'))
+<div class="alert alert-success">
+{{ session('success_msg') }}
+</div>
+@endif
 
+@if (session('error_msg'))
+<div class="alert alert-danger">
+{{ session('error_msg') }}
+</div>
+@endif
 {{-- o atributo action aponta para a rota que está direcionada ao método store do controlador --}}
 <form class="container" method="POST" action="{{ route('integradors.store') }}">
     {{-- CSRF é um token de segurança para validar o formulário --}}
@@ -29,18 +39,17 @@
         <option value="Hanwha Q-Cells">Hanwha Q-Cells</option>
         <option value="GCL-Si">GCL-Si</option>
     </select>
-    <div class="form-group">
-        <label for="porte">Porte da empresa:</label>
-        <select id="porte" name="porte" required>
-            <option value="">SELECIONE</option>
-            <option value="Pequena">Pequena</option>
-            <option value="Média">Média</option>
-            <option value="Grande">Grande</option>
-        </select>
-    </div>
+    <label for="porte">Porte da empresa:</label>
+    <select id="porte" name="porte" required>
+        <option value="">SELECIONE</option>
+        <option value="Pequena">Pequena</option>
+        <option value="Média">Média</option>
+        <option value="Grande">Grande</option>
+    </select>
+  
 
-    <button class="btn" type="submit" value="Salvar">Salvar</button>
-    <button class="btn" type="reset" value="Limpar">Limpar</button>
+    <button class="btn-save" type="submit" value="Salvar">Salvar</button>
+    <button class="btn-del" type="reset" value="Limpar">Limpar</button>
 
 </form>
 @endsection

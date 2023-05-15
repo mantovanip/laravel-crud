@@ -18,7 +18,7 @@
     <p><strong>Marca de Painéis:</strong> {{ $integradors->marca_paineis }}</p>
     <p><strong>Porte:</strong> {{ $integradors->porte }}</p>
 
-    <a class="btn" href="{{ route('integradors.index') }}">Voltar</a>
+    <a class="btn-edit" href="{{ route('integradors.index') }}">Voltar</a>
 
 
 </div>
